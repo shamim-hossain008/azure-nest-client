@@ -5,10 +5,10 @@ import Nav from "../pages/Home/Shared/NavBar/Nav";
 
 const MainLayout = () => {
   return (
-    <div className="max-w-[2520px] max-auto xl:px20 md:px-10 sm:px-2 px-4">
+    <div className="max-w-[2520px] max-auto xl:px20 md:px-10 sm:px-2 px-4 bg-[#F9D094]">
       <Nav />
 
-      <div className="flex-1 bg-green-800">
+      <div className="pt-20 min-h-[calc(100vh-68px)]">
         <Outlet />
       </div>
       <Footer />

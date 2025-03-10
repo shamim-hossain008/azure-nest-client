@@ -1,13 +1,13 @@
-import React from "react";
 import { Link } from "react-router";
+import "../../../../../src/styles.css";
 
 const Nav = () => {
   return (
-    <div className="navbar bg-white shadow-sm">
+    <div className="navbar sticky z-10 top-0 bg-white shadow-sm">
       <div className="flex-1">
         <Link to="/" className=" text-red-400 text-xl ">
-          <h1 className="gap-0 font-extrabold text-sm">
-            <span className="lg:text-3xl bg-300% font-bold bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient">
+          <h1 className="gap-0 font-extrabold text-sm ">
+            <span className="shadow-xl p-2 lg:text-3xl bg-300% font-bold bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient">
               Azure-Nest
             </span>
           </h1>

@@ -11,7 +11,7 @@ import { createContext, useState } from "react";
 import app from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
-const app = getAuth(app);
+const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -25,9 +25,10 @@ const AuthProvider = ({ children }) => {
   };
 
   // log in user
-  const signIn = () => {};
-  setLoading(true);
-  return signInWithEmailAndPassword(auth, email, password);
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   //  user login with google
   const googleLogin = () => {
