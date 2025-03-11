@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const ErrorPage = () => {
   return (
     <section className="flex items-center h-full p-16 bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800">
@@ -13,13 +15,13 @@ const ErrorPage = () => {
             But don't worry, you can find plenty of other things on our
             homepage.
           </p>
-          <a
+          <Link to='/'
             rel="noopener noreferrer"
             href="#"
             className="px-8 py-3 font-semibold rounded bg-violet-400 dark:bg-violet-600 text-gray-900 dark:text-gray-50"
           >
             Back to homepage
-          </a>
+          </Link>
         </div>
       </div>
     </section>
