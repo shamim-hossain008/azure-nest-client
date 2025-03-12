@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
@@ -11,7 +12,7 @@ const SignUp = () => {
         <title>Azure-Nest | SignUp </title>
       </Helmet>
       <section className="hero h-[700px]">
-        <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-400 lg:max-w-4xl p-4">
+        <div className="flex w-full max-w-sm mx-auto overflow-hidden  rounded-lg shadow-lg dark:bg-gray-400 lg:max-w-4xl p-4">
           <div class="flex items-center h-full lg:px-20 ">
             <div>
               <h2 className="  text-2xl py-20 font-bold text-white sm:text-3xl">
@@ -34,19 +35,16 @@ const SignUp = () => {
                 Sign Up
               </p>
 
-              {/* <SocialLogin /> */}
+              <SocialLogin />
 
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/5 border-b dark:border-gray-500 lg:w-1/4"></span>
 
-                <a
-                  href="#"
-                  className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
-                >
+                <p className="text-xs text-center text-white uppercase  ">
                   or Sign Up with email
-                </a>
+                </p>
 
-                <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
+                <span className="w-1/5 border-b lg:w-1/4"></span>
               </div>
               <div className="mt-4">
                 <label

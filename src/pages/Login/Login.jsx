@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
@@ -29,7 +30,7 @@ const Login = () => {
               Welcome back!
             </p>
 
-            {/* <SocialLogin /> */}
+            <SocialLogin />
 
             <form
             // onSubmit={handleLogin}
@@ -37,14 +38,11 @@ const Login = () => {
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/5 border-b dark:border-gray-500 lg:w-1/4"></span>
 
-                <a
-                  href="#"
-                  className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
-                >
+                <p className="text-xs text-center text-white uppercase">
                   or login with email
-                </a>
+                </p>
 
-                <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
+                <span className="w-1/5 border-b  lg:w-1/4"></span>
               </div>
 
               <div className="mt-4">
