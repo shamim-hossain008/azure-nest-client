@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router";
 
 const RoomCard = ({ room }) => {
-  console.log("room data from room card", room);
   return (
     <Link to={`/room/${room?._id}`} className="col-span-1 cursor-pointer group">
       <div className="flex flex-col gap-2 w-full ">
