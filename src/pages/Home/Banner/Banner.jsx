@@ -43,7 +43,7 @@ const Banner = () => {
         {rooms.map((room) => (
           <SwiperSlide key={room._id}>
             <img
-              className="w-full h-96 mx-auto rounded-xl  overflow-hidden object-cover"
+              className="w-full h-4/5 mx-auto rounded-xl  overflow-hidden object-cover"
               src={room?.image}
             />
           </SwiperSlide>

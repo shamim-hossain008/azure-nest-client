@@ -10,112 +10,89 @@ const Login = () => {
       <Helmet>
         <title>Azure-Nest | Login</title>
       </Helmet>
-      <div className="hero h-[700px]">
-        <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-400 lg:max-w-4xl p-4">
-          <div class="flex items-center h-full lg:px-20 ">
-            <div>
-              <h2 class="text-2xl py-20 font-bold text-white sm:text-3xl">
-                <span className="text-[#37c5bd]">Azure</span>-
-                <span className="">Nest</span>
-              </h2>
-
-              <p class="max-w-xl text-white">
-                Enter your credentials to access your dashboard and stay updated
-                on your contests.
-              </p>
-            </div>
-          </div>
-          <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-            <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
-              Welcome back!
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+          <div className="mb-8 text-center">
+            <h1 className="my-3 text-4xl font-bold">Log In</h1>
+            <p className="text-sm text-gray-400">
+              Sign in to access your account
             </p>
-
-            <SocialLogin />
-
-            <form
-            // onSubmit={handleLogin}
-            >
-              <div className="flex items-center justify-between mt-4">
-                <span className="w-1/5 border-b dark:border-gray-500 lg:w-1/4"></span>
-
-                <p className="text-xs text-center text-white uppercase">
-                  or login with email
-                </p>
-
-                <span className="w-1/5 border-b  lg:w-1/4"></span>
-              </div>
-
-              <div className="mt-4">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                  for="LoggingEmailAddress"
-                >
-                  Email Address
+          </div>
+          <form className="space-y-6 ng-untouched ng-pristine ng-valid">
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm">
+                  Email address
                 </label>
                 <input
-                  id="LoggingEmailAddress"
-                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
                   type="email"
                   name="email"
-                  onBlur={(e) => setEmail(e.target.value)}
+                  id="email"
+                  required
+                  placeholder="Enter Your Email Here"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                  data-temp-mail-org="0"
                 />
               </div>
-
-              <div className="mt-4">
-                <div>
-                  <label
-                    className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                    for="loggingPassword"
-                  >
+              <div>
+                <div className="flex justify-between">
+                  <label htmlFor="password" className="text-sm mb-2">
                     Password
                   </label>
                 </div>
-
                 <input
-                  id="loggingPassword"
-                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
                   type="password"
                   name="password"
+                  autoComplete="current-password"
+                  id="password"
+                  required
+                  placeholder="*******"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
               </div>
+            </div>
 
-              <div className="mt-6">
-                <button
-                  disabled={loading}
-                  className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-                >
-                  {loading ? (
-                    <ImSpinner9 className="animate-spin m-auto text-green-600" />
-                  ) : (
-                    "Sign In"
-                  )}
-                </button>
-              </div>
-            </form>
-            <div className="space-y-1">
+            <div>
               <button
-                // onClick={handleResetPassword}
-                className="text-xs hover:underline hover:text-[#37c5bd] text-gray-100"
+                disabled={loading}
+                type="submit"
+                className="bg-[#2A80B9] w-full rounded-md py-3 text-white"
               >
-                Forget Password
+                {loading ? (
+                  <TbFidgetSpinner className="animate-spin m-auto" />
+                ) : (
+                  "Sign In"
+                )}
               </button>
             </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-
-              <Link
-                to="/signUp"
-                href="#"
-                className="text-sm uppercase text-center text-green-400 hover:underline"
-              >
-                or <br />
-                Sign Up
-              </Link>
-
-              <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-            </div>
+          </form>
+          <div className="space-y-1">
+            <button className="text-xs hover:underline hover:text-rose-500 text-gray-400">
+              Forgot password?
+            </button>
           </div>
+          <div className="flex items-center pt-4 space-x-1">
+            <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+            <p className="px-3 text-sm dark:text-gray-400">
+              Login with social accounts
+            </p>
+            <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+          </div>
+
+          <div>
+            <SocialLogin />
+          </div>
+
+          <p className="px-6 text-sm text-center text-gray-400">
+            Don&apos;t have an account yet?{" "}
+            <Link
+              to="/signUp"
+              className="hover:underline hover:text-rose-500 text-gray-600"
+            >
+              Sign up
+            </Link>
+            .
+          </p>
         </div>
       </div>
     </>

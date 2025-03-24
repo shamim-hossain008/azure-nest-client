@@ -4,23 +4,23 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 import Heading from "../../../../Components/Heading/Heading";
 import SpinnerLoader from "../../../../Components/SpinnerLoader";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const RoomDetails = () => {
   const { id } = useParams();
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   const { data: room = {}, isLoading } = useQuery({
     queryKey: ["room", id],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/room/${id}`);
+      const { data } = await axiosPublic.get(`/room/${id}`);
       return data;
     },
   });
 
   if (isLoading) return <SpinnerLoader />;
 
-  console.log("room details", room);
+  
   return (
     <div>
       <Helmet>

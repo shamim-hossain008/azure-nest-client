@@ -8,7 +8,7 @@ const Home = () => {
       <Helmet>
         <title>Azure-Nest | Vacation Home</title>
       </Helmet>
-      <div className=" w-full h-96 mt-0">
+      <div className=" w-full h-96 mt-0 ">
         <Banner />
       </div>
       <div>
