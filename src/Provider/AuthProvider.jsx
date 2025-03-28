@@ -6,6 +6,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
   };
 
   //   updated user profile
-  const updateUserProfile = () => {
+  const updateUserProfile = (name, photo) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -53,7 +54,7 @@ const AuthProvider = ({ children }) => {
   };
 
   //   log Out User
-  const signOut = () => {
+  const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
@@ -79,7 +80,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     resetPassword,
     updateUserProfile,
-    signOut,
+    logOut,
   };
 
   return (

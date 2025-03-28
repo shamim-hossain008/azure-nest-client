@@ -1,9 +1,30 @@
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
+
 const SocialLogin = () => {
+  const { googleLogin, loading, setLoading } = useAuth();
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setLoading(true);
+      await googleLogin();
+
+      navigate("/");
+      toast.success("User Login Successfully!");
+    } catch (error) {
+      console.log(error.message);
+      toast.error("User login fail");
+    }
+  };
   return (
     <div>
       <button
+        disabled={loading}
+        onClick={handleGoogleSignIn}
         href="#"
-        className="disabled:cursor-not-allowed flex justify-center items-center space-x-2 rounded border m-3 p-2 border-gray-300 border-rounded cursor-pointer gap-0 "
+        className="disabled:cursor-not-allowed  flex justify-center items-center space-x-2 rounded border m-3 p-2 border-gray-300 border-rounded cursor-pointer gap-0 "
       >
         <div className="px-12">
           <svg className="w-6 h-6" viewBox="0 0 40 40">

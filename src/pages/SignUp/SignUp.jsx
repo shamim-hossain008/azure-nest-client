@@ -1,11 +1,53 @@
+import axios from "axios";
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router";
+import { toast } from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { Link, useNavigate } from "react-router";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
-  const { loading } = useAuth();
+  const { createUser, updateUserProfile, loading, setLoading } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.files[0];
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    try {
+      setLoading(true);
+      // 1.Upload image and get image url
+      const { data } = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMGBBI_API_KEY
+        }`,
+        formData
+      );
+
+      console.log("image data:", data?.data?.display_url);
+      // 2. User Registration
+      const result = await createUser(email, password);
+      console.log("create User result:", result);
+
+      // 3. Save user name and photo
+      const photoURL = data?.data?.display_url;
+      await updateUserProfile(name, photoURL);
+      navigate("/");
+      toast.success("Sign up Successful");
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -16,9 +58,9 @@ const SignUp = () => {
           <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
             <div className="mb-8 text-center">
               <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-              <p className="text-sm text-gray-400">Welcome to StayVista</p>
+              <p className="text-sm text-gray-400">Welcome to Azure-Nest</p>
             </div>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm">
@@ -34,10 +76,7 @@ const SignUp = () => {
                   />
                 </div>
                 <div>
-                  <label
-                    htmlFor="image"
-                    className="block mb-2  text-sm"
-                  >
+                  <label htmlFor="image" className="block mb-2  text-sm">
                     Select Image:
                   </label>
                   <input
@@ -88,7 +127,7 @@ const SignUp = () => {
                   className="bg-[#2A80B9] w-full rounded-md py-3 text-white"
                 >
                   {loading ? (
-                    <TbFidgetSpinner className="animate-spin m-auto" />
+                    <TbFidgetSpinner className="animate-spin m-auto " />
                   ) : (
                     "Sign Up"
                   )}
@@ -113,7 +152,6 @@ const SignUp = () => {
               >
                 Login
               </Link>
-              .
             </p>
           </div>
         </div>
