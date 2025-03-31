@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { loading } = useAuth();
+
   return (
     <>
       <Helmet>
@@ -84,7 +85,7 @@ const Login = () => {
           </div>
 
           <p className="px-6 text-sm text-center text-gray-400">
-            Don&apos;t have an account yet?{" "}
+            Don&apos;t have an account yet?
             <Link
               to="/signUp"
               className="hover:underline hover:text-rose-500 text-gray-600"

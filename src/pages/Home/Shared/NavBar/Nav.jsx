@@ -1,6 +1,7 @@
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../../../../../src/styles.css";
+import Theme from "../../../../Components/Theme Controller/Theme";
 import useAuth from "../../../../hooks/useAuth";
 
 const Nav = () => {
@@ -43,6 +44,7 @@ const Nav = () => {
               )}
             </div>
           </div>
+
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
@@ -52,7 +54,9 @@ const Nav = () => {
                 <li>
                   <a className="justify-between">
                     Profile
-                    <span className="badge">{user?.displayName}</span>
+                    <span className="badge text-green-600">
+                      {user?.displayName}
+                    </span>
                   </a>
                 </li>
                 <li>
@@ -70,6 +74,7 @@ const Nav = () => {
           </ul>
         </div>
       </div>
+      <Theme />
     </div>
   );
 };

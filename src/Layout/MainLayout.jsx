@@ -5,7 +5,7 @@ import Nav from "../pages/Home/Shared/NavBar/Nav";
 
 const MainLayout = () => {
   return (
-    <div className="max-w-[2520px] max-auto xl:px20 md:px-10 sm:px-2 px-4 bg-[#F9D094]">
+    <div className="max-w-[2520px] max-auto xl:px20 md:px-10 sm:px-2 px-4 ">
       <Nav />
 
       <div className="pt-20 min-h-[calc(100vh-68px)]">
