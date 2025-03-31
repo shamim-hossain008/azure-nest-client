@@ -11,8 +11,6 @@ const Theme = () => {
     document.documentElement.setAttribute("data-theme", theme); // Ensure it affects all elements
   }, [theme]);
 
-  console.log(theme);
-
   const handleToggle = (e) => {
     if (e.target.checked) {
       setTheme("luxury");

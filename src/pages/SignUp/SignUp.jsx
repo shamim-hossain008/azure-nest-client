@@ -32,14 +32,15 @@ const SignUp = () => {
         formData
       );
 
-      console.log("image data:", data?.data?.display_url);
+      // console.log("image data:", data?.data?.display_url);
       // 2. User Registration
       const result = await createUser(email, password);
-      console.log("create User result:", result);
+      // console.log("create User result:", result);
 
       // 3. Save user name and photo
       const photoURL = data?.data?.display_url;
       await updateUserProfile(name, photoURL);
+
       navigate("/");
       toast.success("Sign up Successful");
     } catch (error) {

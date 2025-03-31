@@ -1,10 +1,31 @@
 import { Helmet } from "react-helmet";
-import { Link } from "react-router";
+import { toast } from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { Link, useNavigate } from "react-router";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-  const { loading } = useAuth();
+  const { loading, setLoading, signIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      setLoading(true);
+      // 1.sign in user
+      await signIn(email, password);
+      navigate("/");
+      toast.success("Login user Successfully!");
+    } catch (error) {
+      console.log(error.message);
+      toast.error("Logged in failed.....!");
+    }
+  };
 
   return (
     <>
@@ -19,7 +40,10 @@ const Login = () => {
               Sign in to access your account
             </p>
           </div>
-          <form className="space-y-6 ng-untouched ng-pristine ng-valid">
+          <form
+            onSubmit={handleLogin}
+            className="space-y-6 ng-untouched ng-pristine ng-valid"
+          >
             <div className="space-y-4">
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
@@ -57,7 +81,7 @@ const Login = () => {
               <button
                 disabled={loading}
                 type="submit"
-                className="bg-[#2A80B9] w-full rounded-md py-3 text-white"
+                className="bg-[#2A80B9] transition-colors duration-300 transform  tracking-wide hover:bg-blue-500  w-full rounded-md py-3 text-white"
               >
                 {loading ? (
                   <TbFidgetSpinner className="animate-spin m-auto" />
