@@ -47,6 +47,7 @@ const SignUp = () => {
       console.log(error.message);
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -125,7 +126,7 @@ const SignUp = () => {
                 <button
                   disabled={loading}
                   type="submit"
-                  className="bg-[#2A80B9] w-full rounded-md py-3 text-white"
+                  className="bg-[#2A80B9] cursor-pointer w-full rounded-md py-3 text-white transition-colors duration-300 transform  tracking-wide hover:bg-blue-500"
                 >
                   {loading ? (
                     <TbFidgetSpinner className="animate-spin m-auto " />
