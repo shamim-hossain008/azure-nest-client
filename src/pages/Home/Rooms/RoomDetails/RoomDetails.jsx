@@ -5,12 +5,17 @@ import { useParams } from "react-router";
 import Heading from "../../../../Components/Heading/Heading";
 import SpinnerLoader from "../../../../Components/SpinnerLoader";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import RoomReservation from "./RoomReservation";
 
 const RoomDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
 
-  const { data: room = {}, isLoading } = useQuery({
+  const {
+    data: room = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["room", id],
     queryFn: async () => {
       const { data } = await axiosPublic.get(`/room/${id}`);
@@ -20,7 +25,6 @@ const RoomDetails = () => {
 
   if (isLoading) return <SpinnerLoader />;
 
-  
   return (
     <div>
       <Helmet>
@@ -94,7 +98,7 @@ const RoomDetails = () => {
 
             <div className="md:col-span-3 order-first md:order-last mb-10">
               {/* RoomReservation */}
-              {/* <RoomReservation refetch={refetch} room={room} /> */}
+              <RoomReservation refetch={refetch} room={room} />
             </div>
           </div>
         </div>
