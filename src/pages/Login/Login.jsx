@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 
@@ -10,6 +10,8 @@ const Login = () => {
   const { loading, setLoading, signIn, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState();
+  const location = useLocation();
+  const from = location?.state || "/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
       setLoading(true);
       // 1.sign in user
       await signIn(email, password);
-      navigate("/");
+      navigate(from);
       toast.success("Login user Successfully!");
     } catch (error) {
       console.log(error.message);

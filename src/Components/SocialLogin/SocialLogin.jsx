@@ -5,12 +5,14 @@ import useAuth from "../../hooks/useAuth";
 const SocialLogin = () => {
   const { googleLogin, loading, setLoading } = useAuth();
   const navigate = useNavigate();
+  const from = location?.state || "/";
 
   const handleGoogleSignIn = async () => {
     try {
       await googleLogin();
 
-      navigate("/");
+      navigate(from);
+      console.log("location:", from);
       toast.success("User Login Successfully!");
     } catch (error) {
       console.log(error.message);
