@@ -12,7 +12,7 @@ const SocialLogin = () => {
       await googleLogin();
 
       navigate(from);
-      console.log("location:", from);
+
       toast.success("User Login Successfully!");
     } catch (error) {
       console.log(error.message);

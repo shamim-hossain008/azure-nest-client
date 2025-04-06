@@ -51,10 +51,16 @@ const Nav = () => {
           >
             {user ? (
               <>
+                <Link
+                  to="/dashboard"
+                  className="px-4 hover:bg-neutral-100 transition font-semibold cursor-pointer"
+                >
+                  Dashboard
+                </Link>
                 <li>
-                  <a className="justify-between">
+                  <a className="flex justify-around">
                     Profile
-                    <span className="badge text-green-600">
+                    <span className="badge p-2 text-green-600">
                       {user?.displayName}
                     </span>
                   </a>
