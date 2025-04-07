@@ -1,4 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import Statistics from "../../pages/Dashboard/Common/Statistics";
+import AddRoom from "../../pages/Dashboard/Host/AddRoom";
+import MyListings from "../../pages/Dashboard/Host/MyListings";
 import ErrorPage from "../../pages/Error/ErrorPage";
 import Home from "../../pages/Home/Home/Home";
 import RoomDetails from "../../pages/Home/Rooms/RoomDetails/RoomDetails";
@@ -33,6 +36,20 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
-    children:[]
+    children: [
+      {
+        index: true,
+        element: <Statistics />,
+      },
+
+      {
+        path: "add-room",
+        element: <AddRoom />,
+      },
+      {
+        path: "my-listings",
+        element: <MyListings />,
+      },
+    ],
   },
 ]);

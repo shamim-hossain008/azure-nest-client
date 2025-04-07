@@ -12,6 +12,9 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false);
 
   // Sidebar Responsive Handler
+  const handleToggle = () => {
+    setActive(!isActive);
+  };
 
   return (
     <>
@@ -19,19 +22,20 @@ const Sidebar = () => {
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
-            <Link to="/">
-              <img
-                // className='hidden md:block'
-                src="https://i.ibb.co/4ZXzmq5/logo.png"
-                alt="logo"
-                width="100"
-                height="100"
-              />
+            <Link to="/" className="text-xl">
+              <h1 className="gap-0 font-extrabold text-sm ">
+                <span className="p-2 lg:text-3xl bg-300% font-bold bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient">
+                  Azure-Nest
+                </span>
+              </h1>
             </Link>
           </div>
         </div>
 
-        <button className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200">
+        <button
+          onClick={handleToggle}
+          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+        >
           <AiOutlineBars className="h-5 w-5" />
         </button>
       </div>
@@ -63,7 +67,7 @@ const Sidebar = () => {
             <nav>
               {/* Statistics */}
               <NavLink
-                to="statistics"
+                to="/dashboard"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
