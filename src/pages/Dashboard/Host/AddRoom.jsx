@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import AddRoomForm from "../../../Components/Form/AddRoomForm";
 
 const AddRoom = () => {
   return (
@@ -9,16 +10,7 @@ const AddRoom = () => {
       </Helmet>
       <h2> This is a Add room</h2>
       {/* Form */}
-      {/* <AddRoomForm
-        dates={dates}
-        handleDates={handleDates}
-        handleSubmit={handleSubmit}
-        setImagePreview={setImagePreview}
-        imagePreview={imagePreview}
-        handleImage={handleImage}
-        imageText={imageText}
-        loading={loading}
-      /> */}
+      <AddRoomForm />
     </>
   );
 };
