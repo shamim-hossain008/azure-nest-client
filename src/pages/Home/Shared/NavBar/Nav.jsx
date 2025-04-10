@@ -58,12 +58,12 @@ const Nav = () => {
                   Dashboard
                 </Link>
                 <li>
-                  <a className="flex justify-around">
+                  <Link to="/profile" className="flex justify-around">
                     Profile
                     <span className="badge p-2 text-green-600">
                       {user?.displayName}
                     </span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a>Settings</a>

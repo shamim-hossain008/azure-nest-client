@@ -1,10 +1,10 @@
-import axios from "axios";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { imageUpload } from "../../api/utils";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
@@ -19,35 +19,26 @@ const SignUp = () => {
     const password = form.password.value;
     const image = form.image.files[0];
 
-    const formData = new FormData();
-    formData.append("image", image);
-
     try {
       setLoading(true);
       // 1.Upload image and get image url
-      const { data } = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${
-          import.meta.env.VITE_IMGBBI_API_KEY
-        }`,
-        formData
-      );
+      const image_url = await imageUpload(image);
+      console.log("image data:", image_url);
 
-      // console.log("image data:", data?.data?.display_url);
       // 2. User Registration
       const result = await createUser(email, password);
-      // console.log("create User result:", result);
+      console.log("create User result:", result);
 
       // 3. Save user name and photo
-      const photoURL = data?.data?.display_url;
-      await updateUserProfile(name, photoURL);
+      await updateUserProfile(name, image_url);
 
       navigate("/");
       toast.success("Sign up Successful");
     } catch (error) {
+      setLoading(false);
       console.log(error.message);
       toast.error(error.message);
     }
-    setLoading(false);
   };
 
   return (
