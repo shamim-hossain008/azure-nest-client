@@ -26,7 +26,7 @@ const RoomReservation = ({ room, refetch }) => {
         {/* Calender */}
         <DateRange
           showDateDisplay={false}
-          rangeColors={["#20B2F5"]}
+          rangeColors={["#2A80B9"]}
           editableDateInputs={true}
           onChange={(item) => setState([item.selection])}
           moveRangeOnFirstSelection={false}

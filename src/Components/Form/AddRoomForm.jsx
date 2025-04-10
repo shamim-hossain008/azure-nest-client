@@ -1,3 +1,5 @@
+import { DateRange } from "react-date-range";
+
 const AddRoomForm = ({
   dates,
   handleDates,
@@ -10,7 +12,7 @@ const AddRoomForm = ({
 }) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div className="space-y-6">
             <div className="space-y-1 text-sm">
@@ -50,6 +52,15 @@ const AddRoomForm = ({
                 Select Availability Range
               </label>
               {/* Calender */}
+
+              <DateRange
+                showDateDisplay={false}
+                rangeColors={["#2A80B9"]}
+                editableDateInputs={true}
+                onChange={(item) => handleDates(item)}
+                moveRangeOnFirstSelection={false}
+                ranges={[dates]}
+              />
             </div>
           </div>
           <div className="space-y-6">
@@ -81,6 +92,7 @@ const AddRoomForm = ({
                     />
                     <div className="bg-[#2A80B9] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-[#2A80B9]">
                       {/* {imageText} */}
+                      Upload Image
                     </div>
                   </label>
                 </div>
