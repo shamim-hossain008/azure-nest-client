@@ -1,4 +1,5 @@
 import { DateRange } from "react-date-range";
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const AddRoomForm = ({
   dates,
@@ -20,7 +21,7 @@ const AddRoomForm = ({
                 Location
               </label>
               <input
-                className="w-full px-4 py-3 text-gray-800 border border-[#2A80B9] focus:outline-[#2A80B9] rounded-md "
+                className="w-full px-4 py-3 text-gray-800  border border-[#2A80B9] focus:outline-[#2A80B9] rounded-md "
                 name="location"
                 id="location"
                 type="text"
@@ -78,11 +79,14 @@ const AddRoomForm = ({
               />
             </div>
 
-            <div className=" p-4 bg-white w-full  m-auto rounded-lg flex justify-between items-center">
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg flex justify-around items-center">
               <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
                 <div className="flex flex-col w-max mx-auto text-center">
                   <label>
                     <input
+                      onChange={(e) => {
+                        handleImage(e.target.files[0]);
+                      }}
                       className="text-sm cursor-pointer w-36 hidden"
                       type="file"
                       name="image"
@@ -92,15 +96,21 @@ const AddRoomForm = ({
                     />
                     <div className="bg-[#2A80B9] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-[#2A80B9]">
                       {/* {imageText} */}
-                      Upload Image
+                      {imageText.length > 20
+                        ? imageText.split(".")[0].slice(0, 15) +
+                          "..." +
+                          imageText.split(".")[1]
+                        : imageText}
                     </div>
                   </label>
                 </div>
               </div>
+
               <div className="h-16 w-16 object-cover overflow-hidden flex items-center">
-                <img src="" alt="" />
+                {imagePreview && <img src={imagePreview} />}
               </div>
             </div>
+
             <div className="flex justify-between gap-2">
               <div className="space-y-1 text-sm">
                 <label htmlFor="price" className="block text-gray-600">
@@ -178,9 +188,13 @@ const AddRoomForm = ({
         <button
           disabled={loading}
           type="submit"
-          className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-[#2A80B9]"
+          className="w-full p-3 mt-5 cursor-pointer text-center font-medium text-white transition duration-200 rounded shadow-md bg-[#2A80B9]"
         >
-          Save & Continue
+          {loading ? (
+            <TbFidgetSpinner className="animate-spin m-auto" />
+          ) : (
+            " Save & Continue"
+          )}
         </button>
       </form>
     </div>
