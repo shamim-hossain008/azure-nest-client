@@ -1,11 +1,44 @@
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../../../../../src/styles.css";
+import HostModal from "../../../../Components/Modal/HostModal";
 import Theme from "../../../../Components/Theme Controller/Theme";
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  // for modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const modalHandler = async () => {
+    console.log("I want to be a host");
+
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: "gust",
+        status: "Requested",
+      };
+      const { data } = await axiosSecure.put(`/user`, currentUser);
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        toast.success("Success! Please wait for admin approval");
+      } else {
+        toast.success("Please!, Wait for admin approval");
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error);
+    } finally {
+      closeModal();
+    }
+  };
 
   const handleSignOut = async () => {
     try {
@@ -18,6 +51,7 @@ const Nav = () => {
   return (
     <div className="navbar sticky z-10 top-0 bg-white shadow-sm">
       <div className="flex-1">
+        {/* Logo */}
         <Link to="/" className=" text-red-400 text-xl ">
           <h1 className="gap-0 font-extrabold text-sm ">
             <span className="p-2 lg:text-3xl bg-300% font-bold bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient">
@@ -26,6 +60,24 @@ const Nav = () => {
           </h1>
         </Link>
       </div>
+      {/* Become A Host btn */}
+      <div className=" hidden md:block">
+        {/* {!user && ( */}
+        <button
+          disabled={!user}
+          onClick={() => setIsModalOpen(true)}
+          className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition"
+        >
+          Host your home
+        </button>
+        {/* )} */}
+      </div>
+      {/* Modal for host */}
+      <HostModal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        modalHandler={modalHandler}
+      />
       <div className="flex-none">
         <div className="dropdown dropdown-end"></div>
         <div className="dropdown dropdown-end">
