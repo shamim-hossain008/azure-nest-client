@@ -1,3 +1,4 @@
+import { differenceInBusinessDays } from "date-fns";
 import { useState } from "react";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
@@ -10,11 +11,18 @@ const RoomReservation = ({ room, refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = useState([
     {
-      startDate: new Date(),
-      endDate: null,
+      startDate: new Date(room?.from),
+      endDate: new Date(room?.to),
       key: "selection",
     },
   ]);
+  // use date fns (total days * price)
+  const totalPrice =
+    parseInt(differenceInBusinessDays(new Date(room.to), new Date(room.from))) *
+    room?.price;
+
+  console.log(totalPrice);
+
   return (
     <div className="rounded-xl border-[1px] border-neutral-200 overflow-hidden bg-white">
       <div className="flex justify-center items-center gap-1 p-4">
@@ -28,7 +36,15 @@ const RoomReservation = ({ room, refetch }) => {
           showDateDisplay={false}
           rangeColors={["#2A80B9"]}
           editableDateInputs={true}
-          onChange={(item) => setState([item.selection])}
+          onChange={(item) =>
+            setState([
+              {
+                startDate: new Date(room?.from),
+                endDate: new Date(room?.to),
+                key: "selection",
+              },
+            ])
+          }
           moveRangeOnFirstSelection={false}
           ranges={state}
         />
@@ -60,7 +76,7 @@ const RoomReservation = ({ room, refetch }) => {
       <hr />
       <div className="p-4 flex items-center justify-between font-semibold text-lg">
         <div>Total</div>
-        <div>${/* {totalPrice} */}</div>
+        <div>${totalPrice}.00</div>
       </div>
     </div>
   );

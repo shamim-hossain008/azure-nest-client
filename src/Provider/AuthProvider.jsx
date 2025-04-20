@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -59,10 +60,31 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  //  Save user
+  const saveUser = async (user) => {
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: "user",
+        status: "Verified",
+      };
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_BASE_URL}/user`,
+        currentUser
+      );
+      return data;
+    } catch (error) {
+      console.error("Error saving user:", error);
+      throw error;
+    }
+  };
   //   OnAuth State change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        saveUser(currentUser);
+      }
       setLoading(false);
     });
     return () => {
