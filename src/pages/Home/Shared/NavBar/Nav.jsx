@@ -27,10 +27,10 @@ const Nav = () => {
       };
       const { data } = await axiosSecure.put(`/user`, currentUser);
       console.log(data);
-      if (data.modifiedCount > 0) {
-        toast.success("Success! Please wait for admin approval");
+      if (data?.modifiedCount > 0) {
+        toast.success("Success! Please wait for admin confirmation");
       } else {
-        toast.success("Please!, Wait for admin approval");
+        toast.success("Please! Wait for admin approval");
       }
     } catch (error) {
       console.log(error.message);
