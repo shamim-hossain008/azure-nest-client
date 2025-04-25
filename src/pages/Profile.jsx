@@ -1,8 +1,15 @@
 import { Helmet } from "react-helmet";
+import SpinnerLoader from "../Components/SpinnerLoader";
 import useAuth from "../hooks/useAuth";
+import useRole from "../hooks/useRole";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const [role, isLoading] = useRole();
+
+  console.log("user role:", role);
+
+  if (isLoading || loading) return <SpinnerLoader />;
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -25,7 +32,7 @@ const Profile = () => {
           </a>
 
           <p className="p-2 px-4 text-xs text-white bg-pink-500 rounded-full">
-            Admin
+            {role?.charAt(0).toUpperCase() + role?.slice(1).toLowerCase()}
           </p>
           <p className="mt-2 text-xl font-medium text-gray-800 ">
             User Id:{user?.uid}
