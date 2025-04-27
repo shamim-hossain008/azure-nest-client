@@ -61,7 +61,7 @@ const MyListings = () => {
               <div className="inline-block min-w-auto shadow rounded-lg overflow-hidden">
                 <table className="min-w-full  leading-normal">
                   <thead>
-                    <tr className="text-red bg-[#2A80B9]">
+                    <tr className="text-black font-bold bg-[#2A80B9]">
                       <th
                         scope="col"
                         className="px-5 py-3  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"

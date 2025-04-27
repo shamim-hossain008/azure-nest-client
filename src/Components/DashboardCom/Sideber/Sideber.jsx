@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
-import { BsFillHouseAddFill, BsGraphUp } from "react-icons/bs";
+import { BsGraphUp } from "react-icons/bs";
 import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
-import { MdHomeWork } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useRole from "../../../hooks/useRole";
+import AdminMenu from "./Menu/AdminMenu";
+import GuestMenu from "./Menu/GustMenu";
+import HostMenu from "./Menu/HostMenu";
 import MenuItem from "./Menu/MenuItem";
 
 const Sidebar = () => {
   const { logOut } = useAuth() || {};
   const [isActive, setActive] = useState(false);
+  const [role, isLoading] = useRole();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -72,20 +76,14 @@ const Sidebar = () => {
                 address="/dashboard"
                 icon={BsGraphUp}
               />
+              <GuestMenu />
+              <HostMenu />
+              <AdminMenu />
 
-              {/* Add Room */}
-              <MenuItem
-                label="Add Room"
-                address="add-room"
-                icon={BsFillHouseAddFill}
-              />
-
-              {/* My Listing */}
-              <MenuItem
-                label="My Listings"
-                address="my-listings"
-                icon={MdHomeWork}
-              />
+              {/* Conditional role */}
+              {/* {role === "guest" && <HostMenu />}
+              {role === "host" && <HostMenu />}
+              {role === "admin" && <HostMenu />} */}
             </nav>
           </div>
         </div>

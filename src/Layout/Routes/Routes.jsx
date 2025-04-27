@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import ManageUsers from "../../pages/Dashboard/Admin/ManageUsers";
 import Statistics from "../../pages/Dashboard/Common/Statistics";
 import AddRoom from "../../pages/Dashboard/Host/AddRoom";
+import ManageBookings from "../../pages/Dashboard/Host/ManageBookings";
 import MyListings from "../../pages/Dashboard/Host/MyListings";
 import ErrorPage from "../../pages/Error/ErrorPage";
 import Home from "../../pages/Home/Home/Home";
@@ -47,13 +49,24 @@ export const router = createBrowserRouter([
         element: <Statistics />,
       },
 
+      // Admin related route
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
+      },
+
+      // Host related route
       {
         path: "add-room",
         element: <AddRoom />,
       },
-      {
+      { 
         path: "my-listings",
         element: <MyListings />,
+      },
+      {
+        path: "manage-bookings",
+        element: <ManageBookings />,
       },
     ],
   },
