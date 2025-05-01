@@ -22,7 +22,7 @@ const ManageUsers = () => {
       return data;
     },
   });
-  console.log("users manage data", users);
+  // console.log("users manage data", users);
 
   if ((isLoading, loading)) return <SpinnerLoader />;
   return (
